@@ -1,17 +1,24 @@
 plugins {
     id 'java'
 }
+
 java {
-    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+    // IMPORTANT: Use Java 21 so we can consume the classfile 65.0 library
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
 }
+
 repositories {
     mavenCentral()
 }
+
 dependencies {
+    // Using the jar you built already
     implementation files('../../lib/java/codedifferently-instructional/instructional-lib/build/libs/instructional-lib.jar')
+
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+
 test {
     useJUnitPlatform()
 }
